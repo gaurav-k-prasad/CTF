@@ -27,4 +27,7 @@ def add_header(response):
     return response
 
 
-app = app
+if __name__ == '__main__':
+    # host='0.0.0.0' allows external access to the container
+    # port=10000 is the Render default
+    app.run(host='0.0.0.0', port=10000)
