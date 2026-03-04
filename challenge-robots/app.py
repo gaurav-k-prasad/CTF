@@ -19,6 +19,4 @@ def hidden_flag():
     # The hidden page containing the flag
     return render_template('flag.html')
 
-if __name__ == '__main__':
-    # Running on port 10000 is standard practice for Render deployments
-    app.run(host='0.0.0.0', port=10000)
+app = app
