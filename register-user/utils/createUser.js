@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import RegUser from "../models/reguser.model";
 import User from "../models/user.model";
-import connectDB from "../utils/db"
+import connectDB from "../utils/db";
 
 const SALT_ROUNDS = 10;
 
@@ -43,7 +43,7 @@ export async function getUserCreds(email, regno) {
     if (existingUser) {
       console.log(`✅ User already exists: ${regno}`);
       console.log(existingUser);
-      return existingUser; // Return the existing user and stop here
+      return { ...existingUser._doc, password: "❌ Already registered" }; // Return the existing user and stop here
     }
 
     // 2. If no user exists, proceed with creation
@@ -67,7 +67,7 @@ export async function getUserCreds(email, regno) {
     const savedUserCreds = await userCreds.save();
     console.log(`🧩 Created new user: ${regno} (${cwId})`);
 
-    return savedUserCreds;
+    return { ...savedUserCreds._doc };
   } catch (err) {
     console.error("❌ Error in getUserCreds:", err);
   }

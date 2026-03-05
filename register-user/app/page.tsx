@@ -18,7 +18,7 @@ export default function Home() {
     const regRegex = /^(21|22|23|24|25)[A-Z]{3}[0-9]{4}$/;
 
     if (!regRegex.test(regNo.toUpperCase())) {
-      setError("Invalid Registration Number format (e.g., 23BCE0449)");
+      setError("Invalid Registration Number format (e.g., 23BCE0923)");
       setIsLoading(false);
       return;
     }
@@ -38,8 +38,8 @@ export default function Home() {
       }
 
       // Save the returned schema { cwId, password, regNo } to state
-      console.log(data._doc);
-      setCredentials(data._doc);
+      console.log(data);
+      setCredentials(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -72,7 +72,7 @@ export default function Home() {
                   type="text"
                   value={regNo}
                   onChange={(e) => setRegNo(e.target.value)}
-                  placeholder="e.g. 23BCE0449"
+                  placeholder="e.g. 23BCE0932"
                   disabled={isLoading}
                   className={`w-full bg-black border p-3 text-white focus:outline-none transition-colors ${
                     error
