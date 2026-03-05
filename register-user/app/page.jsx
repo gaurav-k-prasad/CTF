@@ -10,7 +10,7 @@ export default function Home() {
   // State to hold the returned schema data
   const [credentials, setCredentials] = useState(null);
 
-  const handleSubmit = async (e: unknown) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
@@ -40,7 +40,7 @@ export default function Home() {
       // Save the returned schema { cwId, password, regNo } to state
       console.log(data);
       setCredentials(data);
-    } catch (err: unknown) {
+    } catch (err) {
       setError(err.message);
     } finally {
       setIsLoading(false);
@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   // Helper function to make copying easy for the newbies
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     alert("Copied to clipboard!");
   };
